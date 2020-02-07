@@ -1,3 +1,14 @@
+officials = [
+    {
+        "username": "office1",
+        "password": "admin1"
+    },
+    {
+        "username": "office2",
+        "password": "admin2"
+    }
+]
+
 vip_users = [
     {
         "username": "vip1_name",
@@ -10,15 +21,3 @@ vip_users = [
         "vip_level": 2
     }
 ]
-
-officials = [
-    {
-        "username": "office1",
-        "password": "admin1"
-    },
-    {
-        "username": "office2",
-        "password": "admin2"
-    }
-]
-
