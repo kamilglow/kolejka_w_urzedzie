@@ -31,11 +31,12 @@ if __name__ == "__main__":
                 k.print_wrong_queue_name()
         elif user.is_vip(user_choice[0]):
             vip_level = user.get_vip_level(user_choice[0])
-            queue_letter_vip = user_choice[1].upper()  # Drugi element listy to numer wybranej kolejki.
-            if queue_letter_vip in queues.keys():
-                q = queues[queue_letter_vip]
-                new_number = q.push(vip_level)
-                k.print_new_number(queue_letter_vip, new_number, "VIP")
+            if len(user_choice) > 1:
+                queue_letter_vip = user_choice[1].upper()  # Drugi element listy to numer wybranej kolejki.
+                if queue_letter_vip in queues.keys():
+                    q = queues[queue_letter_vip]
+                    new_number = q.push(vip_level)
+                    k.print_new_number(queue_letter_vip, new_number, "VIP")
             else:
                 k.print_wrong_queue_name()
         else:
