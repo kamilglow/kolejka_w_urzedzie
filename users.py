@@ -36,9 +36,7 @@ class Users:
                         vip = 0
 
             self.officials = json.loads('[' + self.officials_str.split('[')[1])
-            print(self.officials)
             self.vip_users = json.loads('[' + self.vip_users_str.split('[')[1])
-            print(self.vip_users)
 
         except:
             print(Komunikaty.config_file_error(self.USERS_FILE))
@@ -79,10 +77,8 @@ class Users:
 
 if __name__ == '__main__':
     users = Users()
-    users.read_users()
+    print('Test weryfikacji użytkowników:\n')
     for i in users.officials:
-        print(i)
+        print(users.is_official(i['password']), i)
     for i in users.vip_users:
-        print(i)
-    test = users.is_official('admin1')
-    print(test)
+        print(users.is_vip(i['password']), i)
