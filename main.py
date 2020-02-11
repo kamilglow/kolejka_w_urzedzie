@@ -13,6 +13,9 @@ user = Users()
 if __name__ == "__main__":
     while True:
         user_choice: list = k.get_letter_or_password().split()
+        if len(user_choice) == 0:
+            k.print_wrong_queue_name()
+            continue
         if user_choice[0].upper() in queues.keys():
             q = queues[user_choice[0].upper()]
             new_number = q.push()
