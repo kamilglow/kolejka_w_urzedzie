@@ -77,7 +77,7 @@ class Users:
 
 if __name__ == '__main__':
     users = Users()
-    print('Test weryfikacji użytkowników:\n')
+    print('Test weryfikacji odczytanych użytkowników:\n')
     for i in users.officials:
         print(users.is_official(i['password']), i)
     for i in users.vip_users:
