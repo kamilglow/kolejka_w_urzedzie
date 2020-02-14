@@ -1,0 +1,24 @@
+{
+  "officials": [
+    {
+      "username": "office1",
+      "password": "admin1"
+    },
+    {
+      "username": "office2",
+      "password": "admin2"
+    }
+  ],
+  "vip_users": [
+    {
+      "username": "vip1_name",
+      "password": "vip1pass",
+      "vip_level": 1
+    },
+    {
+      "username": "vip2_name",
+      "password": "vip2pass",
+      "vip_level": 2
+    }
+  ]
+}

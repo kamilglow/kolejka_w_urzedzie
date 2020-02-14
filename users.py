@@ -1,53 +1,32 @@
 import json
-import re
 
 from app_interface import Komunikaty
 
 
 class Users:
     def __init__(self):
-        self.USERS_FILE = 'users.txt'
-        self.officials_str = ''
-        self.vip_users_str = ''
+        self.USERS_FILE = 'users.json'
         self.vip_users: list = []
         self.officials: list = []
         self.read_users()
 
     def read_users(self):
         try:
-            with open('users.txt', 'r') as plik:
-                off = 0
-                vip = 0
-                for line in plik:
-                    if re.match('officials', line) is not None:
-                        off = 1
-                        vip = 0
-                    if off:
-                        self.officials_str += line.replace('\n', '')
-                    if ']' in line:
-                        off = 0
-
-                    if re.match('vip_users', line) is not None:
-                        off = 0
-                        vip = 1
-                    if vip:
-                        self.vip_users_str += line.replace('\n', '')
-                    if ']' in line:
-                        vip = 0
-
-            self.officials = json.loads('[' + self.officials_str.split('[')[1])
-            self.vip_users = json.loads('[' + self.vip_users_str.split('[')[1])
-
+            with open(self.USERS_FILE, 'r') as plik:
+                users_dict = json.loads(plik.read())
+            self.officials = users_dict['officials']
+            self.vip_users = users_dict['vip_users']
         except:
             print(Komunikaty.config_file_error(self.USERS_FILE))
 
     def write_users(self):
-        """Funkcja dodatkowa do tworzenia pliku 'users.txt'."""
-        with open('users.txt', 'w') as file:
-            file.write('officials = ')
-            json.dump(self.officials, file, indent=4)
-            file.write('\n\nvip_users = ')
-            json.dump(self.vip_users, file, indent=4)
+        """Funkcja dodatkowa do tworzenia pliku 'users.json'."""
+        with open(self.USERS_FILE, 'w') as file:
+            users_dict = {
+                'officials': self.officials,
+                'vip_users': self.vip_users
+            }
+            json.dump(users_dict, file, indent=2)
         print('Zapisano plik użytkowników.')
 
     def is_vip(self, password: str) -> bool:
