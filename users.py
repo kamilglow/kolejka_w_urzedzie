@@ -16,7 +16,8 @@ class Users:
                 users_dict = json.loads(plik.read())
             self.officials = users_dict['officials']
             self.vip_users = users_dict['vip_users']
-        except:
+        except Exception as error:
+            print(error)
             print(Komunikaty.config_file_error(self.USERS_FILE))
 
     def write_users(self):
@@ -56,7 +57,7 @@ class Users:
 
 if __name__ == '__main__':
     users = Users()
-    print('Test weryfikacji odczytanych użytkowników:\n')
+    print('Test pliku użytkowników:\n')
     for i in users.officials:
         print(users.is_official(i['password']), i)
     for i in users.vip_users:
